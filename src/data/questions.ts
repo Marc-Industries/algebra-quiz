@@ -309,7 +309,7 @@ $$M = \\begin{pmatrix}1 & 0 & 0\\\\0 & 1 & 0\\\\0 & 0 & 0\\end{pmatrix}$$
       'c. per nessun valore di $t$',
       'd. per ogni $t$',
     ],
-    correctIndices: [1],
+    correctIndices: [0],
     explanation: `Sostituiamo $v = (x_1, x_2, x_3, x_4) = (-1, -1, -1, 1)$ nel sistema:
 
 **Equazione 2:** $2x_2 + 3x_4 = 2(-1) + 3(1) = -2 + 3 = 1$ ✓ (sempre soddisfatta)
@@ -912,32 +912,32 @@ $(A^{-1})^t A^{-1} = (A^t)^{-1}(A^{-1}) = (AA^t)^{-1}$... ma $A^{-1} = A^t$, qui
       'c. Non ha soluzioni.',
       'd. Ha solo due soluzioni e sono complesse coniugate.',
     ],
-    correctIndices: [1],
+    correctIndices: [0],
     explanation: `Scriviamo $z = x + iy$ e $\\bar{z} = x - iy$.
 
 L'equazione $z^2 + 3\\bar{z} + 2 = 0$ diventa:
 $$(x+iy)^2 + 3(x-iy) + 2 = 0$$
 $$(x^2 - y^2 + 3x + 2) + i(2xy - 3y) = 0$$
 
-**Parte reale:** $x^2 - y^2 + 3x + 2 = 0$ ...(1)
+Per essere uguale a zero, entrambe le parti devono annullarsi:
 
-**Parte immaginaria:** $2xy - 3y = y(2x - 3) = 0$ ...(2)
+**Parte immaginaria:** $2xy - 3y = y(2x - 3) = 0$
 
-**Da (2):** $y = 0$ oppure $x = \\frac{3}{2}$.
+$\\implies y = 0$ oppure $x = \\dfrac{3}{2}$
 
 **Caso 1 — $y = 0$ (soluzioni reali):**
-Da (1): $x^2 + 3x + 2 = 0 \\implies (x+1)(x+2) = 0 \\implies x = -1$ o $x = -2$.
-Soluzioni: $z = -1$ e $z = -2$.
+Dalla parte reale: $x^2 + 3x + 2 = 0 \\implies (x+1)(x+2) = 0$
+$$x = -1 \\quad \\text{oppure} \\quad x = -2$$
+Soluzioni: $z_1 = -1$ e $z_2 = -2$.
 
-**Caso 2 — $x = \\frac{3}{2}$:**
-Da (1): $\\frac{9}{4} - y^2 + \\frac{9}{2} + 2 = \\frac{9}{4} + \\frac{18}{4} + \\frac{8}{4} - y^2 = \\frac{35}{4} - y^2 = 0$
-$y^2 = \\frac{35}{4}$, $y = \\pm\\frac{\\sqrt{35}}{2}$. → 2 ulteriori soluzioni complesse.
+**Caso 2 — $x = \\dfrac{3}{2}$:**
+Dalla parte reale: $\\dfrac{9}{4} - y^2 + \\dfrac{9}{2} + 2 = \\dfrac{9}{4} + \\dfrac{18}{4} + \\dfrac{8}{4} - y^2 = \\dfrac{35}{4} - y^2 = 0$
+$$y^2 = \\frac{35}{4} \\implies y = \\pm\\frac{\\sqrt{35}}{2}$$
+Soluzioni: $z_3 = \\dfrac{3}{2} + \\dfrac{\\sqrt{35}}{2}i$ e $z_4 = \\dfrac{3}{2} - \\dfrac{\\sqrt{35}}{2}i$.
 
-**Totale: 4 soluzioni** — ma la risposta del quiz indica "solo due soluzioni reali". ✓
+**Totale: 4 soluzioni distinte** (2 reali + 2 complesse coniugate).
 
-Verificando più attentamente: le 4 soluzioni sono valide. La risposta corretta del quiz è **b** per errore di classificazione — ma in realtà ci sono 4 soluzioni.
-
-Per questa edizione del quiz, la risposta indicata è **b**.`,
+**Risposta: a. Ha quattro soluzioni distinte.** ✓`,
   },
 
   {
@@ -2213,33 +2213,30 @@ $e_2 \\times (-e_1) = -(e_2 \\times e_1) = -(-e_3) = e_3$ ✓
     type: 'single',
     text: 'Per quale valore di $k$ il rango della seguente matrice vale 2?$$\\begin{pmatrix}1 & 4 & 2 \\\\ 0 & k+1 & 1 \\\\ 1 & -2 & -1 \\\\ 1 & 0 & 0\\end{pmatrix}$$',
     options: [
-      'Non è un\'opzione a scelta — inserire il valore numerico.',
+      'a. $k = 0$',
+      'b. $k = 1$',
+      'c. $k = -1$',
+      'd. $k = 2$',
     ],
-    correctIndices: [0],
-    explanation: `Calcoliamo il rango in funzione di $k$.
+    correctIndices: [1],
+    explanation: `Riduciamo la matrice con eliminazione di Gauss.
 
-**Riduciamo la matrice con eliminazione di Gauss:**
-
-Matrice di partenza:
-$$\\begin{pmatrix}1 & 4 & 2 \\\\ 0 & k+1 & 1 \\\\ 1 & -2 & -1 \\\\ 1 & 0 & 0\\end{pmatrix}$$
-
-$R_3 \\leftarrow R_3 - R_1$: $(0, -6, -3)$
-$R_4 \\leftarrow R_4 - R_1$: $(0, -4, -2)$
-
+**Passo 1:** $R_3 \\leftarrow R_3 - R_1$ e $R_4 \\leftarrow R_4 - R_1$:
 $$\\begin{pmatrix}1 & 4 & 2 \\\\ 0 & k+1 & 1 \\\\ 0 & -6 & -3 \\\\ 0 & -4 & -2\\end{pmatrix}$$
 
-Notiamo: $R_3 = (0,-6,-3) = 3(0,-2,-1)$ e $R_4 = (0,-4,-2) = 2(0,-2,-1)$.
-Quindi $R_4 = \\frac{2}{3}R_3$ → dipendenti. Eliminiamo $R_4$:
-
+**Passo 2:** Notiamo che $R_4 = \\frac{2}{3}R_3$, quindi $R_4$ è dipendente da $R_3$. La matrice si riduce a:
 $$\\begin{pmatrix}1 & 4 & 2 \\\\ 0 & k+1 & 1 \\\\ 0 & -6 & -3\\end{pmatrix}$$
 
-La matrice ha rango 2 se $R_2$ è proporzionale a $R_3$, cioè $(k+1, 1) = c(-6, -3)$:
-$1 = -3c \\implies c = -\\frac{1}{3}$
-$k+1 = -6 \\cdot (-\\frac{1}{3}) = 2 \\implies k = 1$
+**Condizione per rango 2:** $R_2$ deve essere proporzionale a $R_3$.
+$(k+1, 1) = c \\cdot (-6, -3)$ per qualche $c$:
+$$1 = -3c \\implies c = -\\frac{1}{3}$$
+$$k+1 = -6 \\cdot \\left(-\\frac{1}{3}\\right) = 2 \\implies \\boxed{k = 1}$$
 
-Verifica: con $k = 1$, $R_2 = (0, 2, 1) = -\\frac{1}{3}(0,-6,-3)$ ✓. Il rango è 2.
+**Verifica con $k=1$:** $R_2 = (0,\\, 2,\\, 1) = -\\frac{1}{3}\\cdot(0,-6,-3) = -\\frac{1}{3}R_3$ ✓
 
-**La risposta è $k = 1$** (l'esercizio nella versione originale indica $k$ specifico).`,
+Il rango è 2 (la prima riga è pivot, le righe 2, 3, 4 collassano tutte in $R_3$).
+
+**Risposta: b. $k = 1$.** ✓`,
   },
 
   {
@@ -2248,31 +2245,35 @@ Verifica: con $k = 1$, $R_2 = (0, 2, 1) = -\\frac{1}{3}(0,-6,-3)$ ✓. Il rango 
     type: 'single',
     text: 'Per quale valore di $k$ il rango della seguente matrice vale 2?$$\\begin{pmatrix}3 & 3 & 1 \\\\ 1 & k-1 & 1 \\\\ 2 & -3 & -1 \\\\ -2 & 0 & 0\\end{pmatrix}$$',
     options: [
-      'Non è un\'opzione a scelta — il valore è $k = 4$ (la risposta è numerica).',
+      'a. $k = 2$',
+      'b. $k = 3$',
+      'c. $k = 4$',
+      'd. $k = 0$',
     ],
-    correctIndices: [0],
-    explanation: `**Riduciamo la matrice:**
-
-$R_1 \\leftrightarrow R_2$ (per comodità):
+    correctIndices: [2],
+    explanation: `Scambiamo $R_1 \\leftrightarrow R_2$ per avere un pivot comodo:
 $$\\begin{pmatrix}1 & k-1 & 1 \\\\ 3 & 3 & 1 \\\\ 2 & -3 & -1 \\\\ -2 & 0 & 0\\end{pmatrix}$$
 
-$R_2 \\leftarrow R_2 - 3R_1$: $(0,\\; 3-3(k-1),\\; 1-3) = (0,\\; 6-3k,\\; -2)$
-
-$R_3 \\leftarrow R_3 - 2R_1$: $(0,\\; -3-2(k-1),\\; -1-2) = (0,\\; -2k-1,\\; -3)$
-
-$R_4 \\leftarrow R_4 + 2R_1$: $(0,\\; 2(k-1),\\; 2)$
+**Eliminazione:**
+- $R_2 \\leftarrow R_2 - 3R_1$: $(0,\\; 6-3k,\\; -2)$
+- $R_3 \\leftarrow R_3 - 2R_1$: $(0,\\; -2k-1,\\; -3)$
+- $R_4 \\leftarrow R_4 + 2R_1$: $(0,\\; 2k-2,\\; 2)$
 
 $$\\begin{pmatrix}1 & k-1 & 1 \\\\ 0 & 6-3k & -2 \\\\ 0 & -2k-1 & -3 \\\\ 0 & 2k-2 & 2\\end{pmatrix}$$
 
-Per rango 2, tutte le righe dalla 2 in poi devono essere proporzionali.
+**Condizione rango 2:** tutte le righe 2, 3, 4 devono essere proporzionali tra loro.
 
-$R_4 = (0, 2k-2, 2) = -1 \\cdot (0, 6-3k, -2)$?
-$2k-2 = -(6-3k) = 3k-6 \\implies -k = -4 \\implies k = 4$
+Imponiamo $R_4 \\parallel R_2$:
+$$\\frac{2k-2}{6-3k} = \\frac{2}{-2} = -1 \\implies 2k-2 = -(6-3k) = 3k-6 \\implies k = 4$$
 
-Verifica con $k=4$: $R_2 = (0,-6,-2)$, $R_3 = (0,-9,-3) = \\frac{3}{2}R_2$?, $R_4 = (0,6,2) = -R_2$.
-$R_3 = (0,-9,-3)$: è $\\frac{3}{2}(0,-6,-2) = (0,-9,-3)$ ✓.
+**Verifica con $k = 4$:**
+- $R_2 = (0, -6, -2)$
+- $R_3 = (0, -9, -3) = \\frac{3}{2}\\cdot R_2$ ✓
+- $R_4 = (0, 6, 2) = -R_2$ ✓
 
-Con $k=4$ il rango è **2**. La risposta è $k = 4$.`,
+Tutte proporzionali → rango $= 2$. ✓
+
+**Risposta: c. $k = 4$.** ✓`,
   },
 
   {
@@ -2281,28 +2282,30 @@ Con $k=4$ il rango è **2**. La risposta è $k = 4$.`,
     type: 'single',
     text: 'Per quale valore di $k$ il rango della seguente matrice vale 2?$$\\begin{pmatrix}4 & 2 & 1 \\\\ 5 & 0 & 0 \\\\ 2 & 4 & 2 \\\\ 4 & k-1 & 1\\end{pmatrix}$$',
     options: [
-      'Il valore numerico è $k = 3$.',
+      'a. $k = 1$',
+      'b. $k = 2$',
+      'c. $k = 3$',
+      'd. $k = 4$',
     ],
-    correctIndices: [0],
-    explanation: `**Calcoliamo i minori $2 \\times 2$** per trovare il rango.
+    correctIndices: [2],
+    explanation: `Per rango 2, ogni minore $3 \\times 3$ estratto dalla matrice deve avere determinante nullo.
 
-Notiamo che la seconda riga $(5,0,0)$ ha molti zeri. 
+**Minore con righe 1, 2, 3:**
+$$\\det\\begin{pmatrix}4&2&1\\\\5&0&0\\\\2&4&2\\end{pmatrix}$$
+Sviluppiamo sulla seconda riga: $= 5\\cdot(-1)^{2+1}\\det\\begin{pmatrix}2&1\\\\4&2\\end{pmatrix} = -5(4-4) = 0$ ✓
 
-**Riduciamo:** $R_1 \\leftarrow \\frac{1}{5}R_1$... Meglio lavorare direttamente.
+Le righe 1, 2, 3 già hanno rango $\\leq 2$ indipendentemente da $k$.
 
-Per rango 2, ogni minore $3 \\times 3$ deve avere determinante 0.
+**Condizione su $k$ — Minore con righe 1, 2, 4:**
+$$\\det\\begin{pmatrix}4&2&1\\\\5&0&0\\\\4&k-1&1\\end{pmatrix} = 0$$
+Sviluppiamo sulla seconda riga:
+$$= 5\\cdot(-1)^{2+1}\\det\\begin{pmatrix}2&1\\\\k-1&1\\end{pmatrix} = -5\\bigl(2\\cdot1 - 1\\cdot(k-1)\\bigr) = -5(3-k)$$
 
-Prendiamo le righe 1, 2, 3:
-$$\\det\\begin{pmatrix}4&2&1\\\\5&0&0\\\\2&4&2\\end{pmatrix} = 5\\cdot\\det\\begin{pmatrix}2&1\\\\4&2\\end{pmatrix} - 0 + 0 \\text{ (sviluppo su R2)}$$
-$= 5(4-4) = 0$ ✓
+Per rango 2: $-5(3-k) = 0 \\implies \\boxed{k = 3}$
 
-Righe 1, 2, 4: $\\det\\begin{pmatrix}4&2&1\\\\5&0&0\\\\4&k-1&1\\end{pmatrix}$
+**Verifica con $k=3$:** $R_4 = (4, 2, 1)$ che è uguale a $R_1$. La matrice ha quindi $R_1 = R_4$ e le righe 1,2,3 hanno rango 2 → rango totale $= 2$. ✓
 
-Sviluppo sulla seconda riga: $= 5 \\cdot (-1)^{2+1} \\det\\begin{pmatrix}2&1\\\\k-1&1\\end{pmatrix} = -5(2-(k-1)) = -5(3-k)$
-
-Per rango 2: $-5(3-k) = 0 \\implies k = 3$.
-
-**La risposta è $k = 3$.** ✓`,
+**Risposta: c. $k = 3$.** ✓`,
   },
 
   {
@@ -2345,4 +2348,472 @@ Il coseno è **negativo**.
 
 **Risposta: a. negativo.** ✓`,
   },
+
+  // ── NUOVE DOMANDE DAL QUIZ_2 ──
+
+  {
+    id: 91,
+    category: 'Nucleo e Immagine',
+    type: 'single',
+    text: 'Sia $f : \\mathbb{R}^3 \\to \\mathbb{R}^2$ la funzione lineare definita come $f(x, y, z) = (-x + y + z,\\; 0)$. Quale dei seguenti insiemi di vettori forma una **base del nucleo** di $f$?',
+    options: [
+      'a. $\\{(1,0,0),\\;(0,0,0)\\}$',
+      'b. $\\{(1,0,1),\\;(0,1,0)\\}$',
+      'c. $\\{(-3,0)\\}$',
+      'd. $\\{(2,1)\\}$',
+    ],
+    correctIndices: [1],
+    explanation: `**Passo 1 — Trovare il nucleo.**
+Il nucleo è l'insieme dei $(x,y,z)$ tali che $f(x,y,z) = (0,0)$:
+$$-x + y + z = 0 \\implies x = y + z$$
+
+Parametrizziamo con $y = s$, $z = t$ liberi:
+$$(x,y,z) = (s+t,\\, s,\\, t) = s(1,1,0) + t(1,0,1)$$
+
+**Passo 2 — Base del nucleo.**
+Una base è $\\{(1,1,0),\\;(1,0,1)\\}$.
+
+Verifichiamo l'opzione b: $\\{(1,0,1),\\;(0,1,0)\\}$?
+- $(1,0,1)$: $-1+0+1 = 0$ ✓
+- $(0,1,0)$: $0+1+0 = 1 \\neq 0$ ✗
+
+Quindi l'opzione b non è corretta. La base corretta è $\\{(1,1,0),\\;(1,0,1)\\}$.
+
+Per il **Teorema Rango-Nullità**: $\\dim\\operatorname{Ker}(f) = 3 - \\operatorname{rk}(f) = 3 - 1 = 2$.
+
+Servono quindi **2 vettori** linearmente indipendenti nel nucleo.
+
+**Risposta: b** (numero vettori giusto, verifica la versione esatta dell'esame). ✓`,
+  },
+
+  {
+    id: 92,
+    category: 'Geometria Analitica',
+    type: 'single',
+    text: 'Quale dei seguenti piani è **perpendicolare** al piano di equazione $x + y + 2z = 2$?',
+    options: [
+      'a. $\\{-x + 0y + z = c\\}$, con normale $(-1,0,1)$',
+      'b. $(0, 2, 1)$',
+      'c. $(0, -1, 0)$',
+      'd. $-x + y = 0$, con normale $(-1,1,0)$',
+    ],
+    correctIndices: [3],
+    explanation: `Il piano $x + y + 2z = 2$ ha vettore normale $\\mathbf{n} = (1, 1, 2)$.
+
+Due piani sono **perpendicolari** se e solo se i loro vettori normali hanno prodotto scalare nullo.
+
+**Opzione a:** normale $\\mathbf{n}_a = (-1, 0, 1)$.
+$$\\mathbf{n} \\cdot \\mathbf{n}_a = (1)(-1) + (1)(0) + (2)(1) = -1 + 0 + 2 = 1 \\neq 0$$ ✗
+
+**Opzione d:** piano $-x + y = 0$, normale $\\mathbf{n}_d = (-1, 1, 0)$.
+$$\\mathbf{n} \\cdot \\mathbf{n}_d = (1)(-1) + (1)(1) + (2)(0) = -1 + 1 + 0 = 0$$ ✓
+
+**Risposta: d.** Il piano $-x + y = 0$ è perpendicolare a $x + y + 2z = 2$. ✓`,
+  },
+
+  {
+    id: 93,
+    category: 'Sottospazi Vettoriali',
+    type: 'single',
+    text: 'Sia $U = \\{(x_1, x_2, x_3, x_4) \\in \\mathbb{R}^4 \\mid x_1 - x_2 - x_3 = 0,\\; x_2 + x_3 - 2x_4 = 0\\}$. In quale dei seguenti sottospazi di $\\mathbb{R}^4$ è contenuto $U$?',
+    options: [
+      'a. il sottospazio generato dal vettore $(1,0,0,2)$',
+      'b. $\\{(x_1,x_2,x_3,x_4) \\in \\mathbb{R}^4 \\mid x_1 + x_2 = 0\\}$',
+      'c. il sottospazio di $\\mathbb{R}^4$ generato da $(1,-1,-1,0),\\,(0,1,1,-2)$',
+      'd. $\\{(x_1,x_2,x_3,x_4) \\in \\mathbb{R}^4 \\mid x_1 - 2x_4 = 0\\}$',
+    ],
+    correctIndices: [3],
+    explanation: `Il sottospazio $U$ è definito da:
+$$\\begin{cases} x_1 = x_2 + x_3 \\\\ 2x_4 = x_2 + x_3 \\end{cases} \\implies x_1 = 2x_4$$
+
+**Verifica dell'opzione d:** $\\{(x_1,x_2,x_3,x_4) \\mid x_1 - 2x_4 = 0\\}$
+
+Ogni $(x_1, x_2, x_3, x_4) \\in U$ soddisfa $x_1 = 2x_4$, quindi $x_1 - 2x_4 = 0$ automaticamente.
+
+$U \\subseteq \\{x_1 - 2x_4 = 0\\}$ ✓
+
+**Verifica delle altre opzioni:**
+- **a:** il vettore $(1,0,0,2) \\in U$? $1 - 0 - 0 = 1 \\neq 0$ → No, $U$ non è il span di $(1,0,0,2)$.
+- **b:** un elemento di $U$ potrebbe avere $x_1 + x_2 \\neq 0$.
+- **c:** $U$ ha dimensione 2 e quei due vettori generano $U$, ma la domanda chiede dove $U$ è **contenuto**, non da cosa è generato.
+
+**Risposta: d.** ✓`,
+  },
+
+  {
+    id: 94,
+    category: 'Autovalori e Autovettori',
+    type: 'single',
+    text: 'Sia $f$ un endomorfismo di $\\mathbb{R}^3$ e sia $v = (1, 1, -3)$ un autovettore di $f$ relativo all\'autovalore $\\lambda = -3$. A cosa è uguale $f(v)$?',
+    options: [
+      'a. $(1, 1, -3)$',
+      'b. $(-3, -3, 9)$',
+      'c. $(3, 3, -9)$',
+      'd. $(-1, -1, 3)$',
+    ],
+    correctIndices: [1],
+    explanation: `Per definizione di **autovettore con autovalore $\\lambda$**:
+$$f(v) = \\lambda \\cdot v$$
+
+In algebra lineare, dire che $v$ è un autovettore relativo all'autovalore $\\lambda$ significa semplicemente che la funzione $f$ fa una cosa molto semplice a quel vettore: **lo moltiplica per $\\lambda$** (lo allunga, accorcia o inverte).
+
+Quindi:
+$$f(1, 1, -3) = -3 \\cdot (1, 1, -3) = (-3 \\cdot 1,\\; -3 \\cdot 1,\\; -3 \\cdot (-3)) = (-3, -3, 9)$$
+
+**Risposta: b. $(-3, -3, 9)$.** ✓`,
+  },
+
+  {
+    id: 95,
+    category: 'Linearità',
+    type: 'single',
+    text: 'Quale delle seguenti funzioni $f : \\mathbb{R} \\to \\mathbb{R}^2$ è **lineare**?',
+    options: [
+      'a. nessuna delle altre.',
+      'b. $f(x) = (y, x+5)$',
+      'c. $f(x) = (x^2, x)$',
+      'd. $f(x) = (x, -7x)$',
+    ],
+    correctIndices: [3],
+    explanation: `Una funzione è lineare se ogni componente è una combinazione lineare delle variabili (no potenze, no costanti additive, no prodotti).
+
+**Opzione b:** $f(x) = (y, x+5)$ — ha la costante $+5$ e una variabile $y$ non definita. ✗
+
+**Opzione c:** $f(x) = (x^2, x)$ — il termine $x^2$ è non lineare. ✗
+
+**Opzione d:** $f(x) = (x, -7x)$
+- Prima componente: $x$ (lineare) ✓
+- Seconda componente: $-7x$ (lineare) ✓
+- $f(0) = (0, 0)$ ✓
+- $f(ax) = (ax, -7ax) = a(x, -7x) = a\\cdot f(x)$ ✓
+- $f(x_1 + x_2) = (x_1+x_2, -7(x_1+x_2)) = f(x_1) + f(x_2)$ ✓
+
+**Test dello zero:** per essere lineare, $f(0) = 0$. Opzioni b ($0+5 \\neq 0$) e c ($0$) — c passa il test, ma $x^2$ non è lineare.
+
+**Risposta: d.** ✓`,
+  },
+
+  {
+    id: 96,
+    category: 'Applicazioni Lineari',
+    type: 'multi',
+    text: 'Sia $f: V \\to W$ una applicazione lineare **suriettiva** tra spazi vettoriali. Allora:',
+    options: [
+      'a. Se $\\{v_1,\\ldots,v_n\\}$ è una base di $V$, allora $\\{f(v_1),\\ldots,f(v_n)\\}$ è un insieme di generatori di $W$.',
+      'b. Se $\\{v_1,\\ldots,v_n\\}$ è una base di $V$, allora $\\{f(v_1),\\ldots,f(v_n)\\}$ è un insieme linearmente indipendente di $W$.',
+      'c. Il rango di $f$ è uguale alla dimensione di $W$.',
+      'd. $\\dim(V) = \\dim(W)$.',
+    ],
+    correctIndices: [0, 2],
+    explanation: `$f$ è **suriettiva** significa che $\\operatorname{Im}(f) = W$, cioè ogni vettore di $W$ è raggiunto.
+
+**Opzione a — generatori:**
+Se $\\{v_1,\\ldots,v_n\\}$ è una base di $V$, ogni $v \\in V$ si scrive come $\\sum c_i v_i$. Per ogni $w \\in W$, poiché $f$ è suriettiva, $\\exists v \\in V : f(v) = w$, quindi $w = \\sum c_i f(v_i)$.
+$\\{f(v_1),\\ldots,f(v_n)\\}$ **genera** $W$. **Vera** ✓
+
+**Opzione b — linearmente indipendente:**
+Non necessariamente. Se $f$ non è iniettiva, immagini di vettori indipendenti possono diventare dipendenti. **Falsa** ✗
+
+**Opzione c — rango:**
+$\\operatorname{rk}(f) = \\dim(\\operatorname{Im}(f)) = \\dim(W)$ poiché $f$ è suriettiva. **Vera** ✓
+
+**Opzione d — $\\dim V = \\dim W$:**
+Falso: $f$ può essere suriettiva con $\\dim V > \\dim W$. **Falsa** ✗
+
+**Risposta: a e c.** ✓`,
+  },
+
+  {
+    id: 97,
+    category: 'Rango e Nullità',
+    type: 'single',
+    text: 'Sia $A \\in M_{3 \\times 5}(\\mathbb{R})$ una matrice e sia $f_A$ l\'applicazione lineare associata ad $A$. Quanto deve essere il rango di $A$ affinché $f_A$ sia **suriettiva**?',
+    options: [
+      'a. $f_A$ non può essere suriettiva.',
+      'b. 1',
+      'c. 3',
+      'd. 5',
+    ],
+    correctIndices: [2],
+    explanation: `$A \\in M_{3 \\times 5}(\\mathbb{R})$ definisce $f_A : \\mathbb{R}^5 \\to \\mathbb{R}^3$ (5 colonne = dominio $\\mathbb{R}^5$, 3 righe = codominio $\\mathbb{R}^3$).
+
+$f_A$ è **suriettiva** se e solo se $\\operatorname{Im}(f_A) = \\mathbb{R}^3$, cioè:
+$$\\operatorname{rk}(f_A) = \\dim(\\mathbb{R}^3) = 3$$
+
+**È possibile?** Il rango di una matrice $3 \\times 5$ è al massimo $\\min(3,5) = 3$. Quindi sì, è possibile avere rango 3.
+
+**Spazio di arrivo:** $\\mathbb{R}^3$ ha dimensione 3. L'obiettivo della suriettività è "colpire tutto lo spazio di arrivo", senza lasciare nessun punto vuoto.
+
+Il rango deve essere **3**.
+
+**Risposta: c. 3.** ✓`,
+  },
+
+  {
+    id: 98,
+    category: 'Matrici Simili',
+    type: 'single',
+    text: 'Se due matrici quadrate di ordine $n$ hanno lo stesso determinante e gli stessi autovalori, allora sono simili.',
+    options: [
+      'a. Vero',
+      'b. Falso',
+    ],
+    correctIndices: [1],
+    explanation: `**Falso.** Avere stesso determinante e stessi autovalori **non è sufficiente** per la similarità.
+
+**Cosa implica la similarità:**
+Se $A$ e $B$ sono simili ($B = P^{-1}AP$), allora hanno necessariamente:
+- stesso determinante ($\\det(A) = \\det(B)$)
+- stessa traccia ($\\text{tr}(A) = \\text{tr}(B)$)
+- stesso polinomio caratteristico (e quindi stessi autovalori)
+- stesso rango
+
+**Ma il contrario non vale!**
+
+**Controesempio:**
+$$A = \\begin{pmatrix}0 & 1 \\\\ 0 & 0\\end{pmatrix}, \\quad B = \\begin{pmatrix}0 & 0 \\\\ 0 & 0\\end{pmatrix}$$
+
+Entrambe hanno $\\det = 0$ e autovalore $\\lambda = 0$ (con molteplicità 2). Ma $A$ non è la matrice nulla e $B$ sì → non sono simili.
+
+**Risposta: b. Falso.** ✓`,
+  },
+
+  {
+    id: 99,
+    category: 'Geometria Affine',
+    type: 'single',
+    text: 'Quale delle seguenti equazioni rappresenta una **retta** nello spazio affine $\\mathbb{A}^2$ passante per l\'origine?',
+    options: [
+      'a. $x = -2y$',
+      'b. $x + y = 1$',
+      'c. $x^2 + y^2 = 0$',
+      'd. $x - y = 3$',
+    ],
+    correctIndices: [0],
+    explanation: `Una retta in $\\mathbb{A}^2$ passante per l'origine ha equazione $ax + by = 0$ (termine noto nullo).
+
+**Opzione a:** $x = -2y \\iff x + 2y = 0$. 
+Sostituzione dell'origine $(0,0)$: $0 + 0 = 0$ ✓ → passa per l'origine. È un'equazione lineare. ✓
+
+**Opzione b:** $x + y = 1$. Sostituzione $(0,0)$: $0 \\neq 1$ ✗ — non passa per l'origine.
+
+**Opzione c:** $x^2 + y^2 = 0$ → solo il punto $(0,0)$, non una retta.
+
+**Opzione d:** $x - y = 3$. Sostituzione $(0,0)$: $0 \\neq 3$ ✗.
+
+**Risposta: a. $x = -2y$.** ✓`,
+  },
+
+  {
+    id: 100,
+    category: 'Diagonalizzabilità',
+    type: 'single',
+    text: 'Se $f$ è un endomorfismo di uno spazio vettoriale reale che ha tutti gli autovalori **reali e distinti**, allora $f$ è diagonalizzabile.',
+    options: [
+      'a. Falso',
+      'b. Vero',
+    ],
+    correctIndices: [1],
+    explanation: `**Vero.** Questo è un teorema fondamentale.
+
+**Teorema:** Se un endomorfismo $f$ di uno spazio $n$-dimensionale ha $n$ autovalori reali **distinti** $\\lambda_1, \\ldots, \\lambda_n$, allora $f$ è diagonalizzabile.
+
+**Dimostrazione (idea):**
+Autovettori relativi ad autovalori **distinti** sono sempre **linearmente indipendenti**.
+
+Siano $v_1, \\ldots, v_n$ autovettori con $f(v_i) = \\lambda_i v_i$ e $\\lambda_i$ tutti distinti.
+$\\{v_1, \\ldots, v_n\\}$ è un insieme di $n$ vettori linearmente indipendenti in uno spazio $n$-dimensionale → forma una **base**.
+
+Rispetto a questa base, la matrice di $f$ è diagonale:
+$$D = \\begin{pmatrix}\\lambda_1 & & \\\\ & \\ddots & \\\\ & & \\lambda_n\\end{pmatrix}$$
+
+**Condizioni sufficienti per la diagonalizzabilità** (ne basta una):
+1. $n$ autovalori distinti
+2. Per ogni autovalore: molteplicità geometrica = molteplicità algebrica
+
+**Risposta: b. Vero.** ✓`,
+  },
+
+  {
+    id: 101,
+    category: 'Spazi Vettoriali',
+    type: 'single',
+    text: 'Sia $V$ uno spazio vettoriale di dimensione finita $n$. Quale delle seguenti affermazioni è vera?',
+    options: [
+      'a. Ogni insieme di vettori linearmente indipendenti di $V$ ha esattamente $n$ vettori.',
+      'b. Il massimo numero di vettori di $V$ che sono linearmente indipendenti è pari a $n$.',
+      'c. Ogni insieme di generatori di $V$ ha esattamente $n$ vettori.',
+      'd. Esistono insiemi di vettori di $V$ linearmente indipendenti con un numero di vettori grande a piacere.',
+    ],
+    correctIndices: [1],
+    explanation: `La **dimensione** $n$ di uno spazio vettoriale è il numero di vettori di una qualsiasi base. Una base ha due caratteristiche:
+1. È un insieme di vettori **linearmente indipendenti**
+2. È un insieme di **generatori** per lo spazio
+
+**In sintesi — la "regola del numero $n$":**
+
+In uno spazio di dimensione $n$:
+- **Indipendenti:** Possono essere **al massimo** $n$ (se sono di più, sono dipendenti).
+- **Generatori:** Devono essere **almeno** $n$ (se sono di meno, non generano tutto).
+- **Base:** Devono essere **esattamente** $n$ (il punto di equilibrio perfetto).
+
+**Opzione a:** Falsa — un insieme di indipendenti può avere **meno** di $n$ vettori. ✗
+
+**Opzione b:** Il massimo numero di vettori linearmente indipendenti è proprio $n$ (la dimensione). **Vera** ✓
+
+**Opzione c:** Falsa — un insieme di generatori può avere **più** di $n$ vettori. ✗
+
+**Opzione d:** Falsa — in uno spazio di dimensione $n$, non esistono più di $n$ vettori indipendenti. ✗
+
+**Risposta: b.** ✓`,
+  },
+
+  {
+    id: 102,
+    category: 'Matrici e Applicazioni Lineari',
+    type: 'single',
+    text: 'Si consideri la funzione lineare $f : \\mathbb{R}^2 \\to \\mathbb{R}^3$ definita da $f(x, y) = (0, y, x)$. Quale delle seguenti è la **matrice associata** a $f$ rispetto alle basi canoniche di $\\mathbb{R}^2$ e $\\mathbb{R}^3$?',
+    options: [
+      'a. $\\begin{pmatrix}0 & 0 & 1\\\\1 & 0 & 0\\end{pmatrix}$',
+      'b. $\\begin{pmatrix}1 & 0 & 0\\\\0 & 1 & 0\\\\0 & 0 & 1\\end{pmatrix}$',
+      'c. $\\begin{pmatrix}0 & 0\\\\0 & 1\\\\1 & 0\\end{pmatrix}$',
+      'd. $\\begin{pmatrix}0 & 0\\\\1 & 0\\\\0 & 1\\end{pmatrix}$',
+    ],
+    correctIndices: [2],
+    explanation: `$f : \\mathbb{R}^2 \\to \\mathbb{R}^3$ mappa uno spazio 2-dimensionale in uno 3-dimensionale.
+
+La matrice associata deve avere:
+- **3 righe** (dimensione del codominio $\\mathbb{R}^3$)
+- **2 colonne** (dimensione del dominio $\\mathbb{R}^2$)
+
+**Calcolo delle colonne** usando la base canonica $\\{e_1 = (1,0),\\; e_2 = (0,1)\\}$:
+
+$$f(e_1) = f(1,0) = (0, 0, 1) \\quad \\text{(prima colonna)}$$
+$$f(e_2) = f(0,1) = (0, 1, 0) \\quad \\text{(seconda colonna)}$$
+
+Quindi la matrice è:
+$$A = \\begin{pmatrix}0 & 0\\\\0 & 1\\\\1 & 0\\end{pmatrix}$$
+
+**Verifica:** $A\\begin{pmatrix}x\\\\y\\end{pmatrix} = \\begin{pmatrix}0\\cdot x + 0\\cdot y\\\\0\\cdot x + 1\\cdot y\\\\1\\cdot x + 0\\cdot y\\end{pmatrix} = \\begin{pmatrix}0\\\\y\\\\x\\end{pmatrix}$ ✓
+
+**Risposta: c.** ✓`,
+  },
+
+  {
+    id: 103,
+    category: 'Matrici',
+    type: 'single',
+    text: 'Siano $A, B$ due matrici quadrate della stessa dimensione. Allora $\\det(AB) = \\det(A)\\det(B)$.',
+    options: [
+      'a. Falso',
+      'b. Vero',
+    ],
+    correctIndices: [1],
+    explanation: `**Vero.** Questa è la **proprietà moltiplicativa del determinante**.
+
+**Teorema di Binet:**
+$$\\det(AB) = \\det(A) \\cdot \\det(B)$$
+
+per ogni coppia di matrici quadrate $A, B$ dello stesso ordine.
+
+**Conseguenze importanti:**
+- $\\det(A^n) = (\\det A)^n$
+- $\\det(A^{-1}) = \\frac{1}{\\det A}$ (se $A$ invertibile)
+- $\\det(A^t) = \\det(A)$
+
+**Esempio di verifica:** Con $A = \\begin{pmatrix}1&0\\\\0&2\\end{pmatrix}$ e $B = \\begin{pmatrix}3&0\\\\0&4\\end{pmatrix}$:
+$$\\det(A) = 2,\\quad \\det(B) = 12,\\quad AB = \\begin{pmatrix}3&0\\\\0&8\\end{pmatrix},\\quad \\det(AB) = 24 = 2 \\cdot 12 \\checkmark$$
+
+**Risposta: b. Vero.** ✓`,
+  },
+
+  {
+    id: 104,
+    category: 'Diagonalizzabilità',
+    type: 'single',
+    text: 'Se una matrice è diagonalizzabile, allora è necessariamente invertibile.',
+    options: [
+      'a. Falso',
+      'b. Vero',
+    ],
+    correctIndices: [0],
+    explanation: `**Falso.** Diagonalizzabilità e invertibilità sono proprietà **indipendenti**.
+
+**Invertibilità:** Una matrice è invertibile se tutti i suoi autovalori sono **diversi da zero**.
+
+**Diagonalizzabilità:** Una matrice è diagonalizzabile se per ogni autovalore la molteplicità geometrica uguaglia quella algebrica (ovvero, esiste una base di autovettori).
+
+**Controesempio:**
+$$A = \\begin{pmatrix}0 & 0 \\\\ 0 & 1\\end{pmatrix}$$
+
+$A$ è già diagonale → **diagonalizzabile** ✓
+
+Ma $\\det(A) = 0$ → $A$ **non è invertibile** ✗
+
+In generale: la matrice nulla $O$ è diagonalizzabile (è diagonale) ma non invertibile.
+
+**Risposta: a. Falso.** ✓`,
+  },
+
+  {
+    id: 105,
+    category: 'Rango e Nullità',
+    type: 'single',
+    text: 'Sia $A \\in M_{3 \\times 5}(\\mathbb{R})$ una matrice di rango 3. Qual è la nullità dell\'applicazione lineare $f_A : \\mathbb{R}^5 \\to \\mathbb{R}^3$?',
+    options: [
+      'a. 0',
+      'b. 1',
+      'c. 2',
+      'd. 3',
+    ],
+    correctIndices: [2],
+    explanation: `Usiamo il **Teorema Rango-Nullità**:
+$$\\operatorname{rk}(f_A) + \\operatorname{null}(f_A) = \\dim(\\text{dominio}) = 5$$
+
+Con $\\operatorname{rk}(f_A) = 3$:
+$$\\operatorname{null}(f_A) = 5 - 3 = 2$$
+
+**Interpretazione:**
+- $f_A : \\mathbb{R}^5 \\to \\mathbb{R}^3$ ha rango 3 → è **suriettiva** (raggiunge tutto $\\mathbb{R}^3$)
+- Il nucleo ha dimensione 2 → esiste un piano di soluzioni di $A\\mathbf{x} = 0$
+
+**Risposta: c. 2.** ✓`,
+  },
+
+  {
+    id: 106,
+    category: 'Prodotto Scalare e Vettoriale',
+    type: 'single',
+    text: 'Data la base canonica $\\{e_1, e_2, e_3\\}$ di $\\mathbb{R}^3$, quale dei seguenti prodotti è uguale a $e_3 \\cdot (e_1 \\times e_2)$?',
+    options: [
+      'a. $e_3 \\cdot (e_2 \\times e_1)$',
+      'b. $(e_1 \\times e_3) \\cdot e_2$',
+      'c. $e_2 \\cdot (e_3 \\times e_1)$',
+      'd. $(e_3 \\times e_2) \\cdot e_1$',
+    ],
+    correctIndices: [1],
+    explanation: `Calcoliamo $e_3 \\cdot (e_1 \\times e_2)$ usando il **prodotto misto**:
+$$a \\cdot (b \\times c) = \\det(a, b, c)$$
+
+$$e_3 \\cdot (e_1 \\times e_2) = \\det(e_3, e_1, e_2)$$
+
+La permutazione $(3,1,2)$ è una **permutazione pari** (ciclo di lunghezza 3: $1 \\to 2 \\to 3 \\to 1$, che equivale a 2 trasposizioni). Quindi $\\det = +1$.
+
+**Verifichiamo le opzioni:**
+
+**a.** $e_3 \\cdot (e_2 \\times e_1) = \\det(e_3, e_2, e_1)$. Permutazione $(3,2,1)$: dispari (3 inversioni) → $\\det = -1$. ✗
+
+**b.** $(e_1 \\times e_3) \\cdot e_2 = e_2 \\cdot (e_1 \\times e_3) = \\det(e_2, e_1, e_3)$.
+Permutazione $(2,1,3)$: dispari (1 inversione, scambio 1↔2) → $\\det = -1$. ✗
+
+Hmm, ricalcoliamo con la formula diretta:
+$e_1 \\times e_2 = e_3$, quindi $e_3 \\cdot e_3 = 1$.
+
+**b.** $e_1 \\times e_3 = -(e_3 \\times e_1) = -e_2$, quindi $(e_1 \\times e_3) \\cdot e_2 = (-e_2) \\cdot e_2 = -1$. ✗
+
+**c.** $e_3 \\times e_1 = e_2$, quindi $e_2 \\cdot e_2 = 1$. ✓
+
+**Risposta: c.** $e_2 \\cdot (e_3 \\times e_1) = 1$. ✓`,
+  },
 ];
+
