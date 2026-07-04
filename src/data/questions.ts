@@ -1,5 +1,6 @@
 import { Question } from '../types';
 
+// VERSIONE DEFINITIVA CORRETTA - pronta per Git
 // Nota: le formule matematiche usano la sintassi KaTeX
 // $...$ per inline, $$...$$ per display
 
@@ -801,24 +802,23 @@ In generale questo $\\neq I$. **Controes.:** $A = B = I$: $(I+I)^t(I+I) = 4I \\n
       'c. $e_3 \\cdot (e_1 \\times e_2)$',
       'd. $(e_3 \\times e_2) \\cdot e_1$',
     ],
-    correctIndices: [0, 2],
-    explanation: `Calcoliamo prima $e_2 \\cdot (e_3 \\times e_1)$.
+    correctIndices: [2],
+    explanation: `Calcoliamo prima il valore della richiesta:
+$$e_3 \times e_1 = e_2$$
+quindi
+$$e_2 \cdot (e_3 \times e_1) = e_2 \cdot e_2 = 1.$$
 
-Con la base canonica: $e_3 \\times e_1 = e_2$ (regola della mano destra).
-Quindi: $e_2 \\cdot (e_3 \\times e_1) = e_2 \\cdot e_2 = 1$.
+Verifichiamo le opzioni:
 
-**Verifichiamo le opzioni:**
+**a.** $e_2 \times e_1 = -e_3$, quindi $(e_2 \times e_1) \cdot e_3 = -1$. ✗
 
-**a.** $(e_2 \\times e_1) \\cdot e_3 = (-e_3) \\cdot e_3 = -1$... aspetta, $e_2 \\times e_1 = -(e_1 \\times e_2) = -e_3$.
-$(-e_3) \\cdot e_3 = -1 \\neq 1$. ✗
+**b.** $e_1 \times e_3 = -e_2$, quindi $e_2 \cdot (e_1 \times e_3) = -1$. ✗
 
-**c.** $e_3 \\cdot (e_1 \\times e_2) = e_3 \\cdot e_3 = 1$ ✓ (il prodotto misto è il determinante!)
+**c.** $e_1 \times e_2 = e_3$, quindi $e_3 \cdot (e_1 \times e_2) = 1$. ✓
 
-La formula del prodotto misto: $a \\cdot (b \\times c) = \\det(a, b, c)$.
-$e_2 \\cdot (e_3 \\times e_1) = \\det(e_2, e_3, e_1) = +1$ (permutazione pari: 231)
-$e_3 \\cdot (e_1 \\times e_2) = \\det(e_3, e_1, e_2) = +1$ (permutazione pari: 312) ✓
+**d.** $e_3 \times e_2 = -e_1$, quindi $(e_3 \times e_2) \cdot e_1 = -1$. ✗
 
-**Risposta: c** è equivalente. La risposta indicata nella soluzione d'esame è **a**, ma la verifica dà **c**. ✓`,
+**Risposta: c.** ✓`,
   },
 
   {
@@ -1088,20 +1088,17 @@ $$\\det(B) = \\det(2A) = 2^4 \\det(A) = 16\\det(A)$$
       'b. $f$ è sempre suriettiva.',
       'c. $f$ preserva sempre gli angoli tra i vettori.',
     ],
-    correctIndices: [2],
-    explanation: `Un'isometria lineare soddisfa $f(v) \\cdot f(w) = v \\cdot w$ per ogni $v, w$.
+    correctIndices: [1, 2],
+    explanation: `Un'isometria lineare preserva le norme: $\|f(v)\| = \|v\|$.
 
-**Opzione a — sempre diagonalizzabile:**
-No. Una rotazione di $\\pi/2$ in $\\mathbb{R}^2$ non ha autovalori reali → non è diagonalizzabile su $\\mathbb{R}$. **Falsa** ✗
+**Opzione a — sempre diagonalizzabile:** Falsa. Una rotazione di $\pi/2$ in $\mathbb{R}^2$ è un'isometria, ma non è diagonalizzabile su $\mathbb{R}$ perché non ha autovalori reali. ✗
 
-**Opzione b — sempre suriettiva:**
-Un'isometria è un'applicazione lineare che preserva le norme. In dimensione finita, è anche iniettiva (perché $f(v) = 0 \\implies \\|v\\| = \\|f(v)\\| = 0 \\implies v = 0$), quindi per il Teorema del rango-nullità è anche suriettiva.
-**Vera** ✓... ma la risposta del quiz indica solo c. Rivediamo.
+**Opzione b — sempre suriettiva:** Vera. Se $f(v)=0$, allora $\|v\|=\|f(v)\|=0$, quindi $v=0$: $f$ è iniettiva. Poiché dominio e codominio hanno la stessa dimensione finita, iniettiva implica suriettiva. ✓
 
-**Opzione c — preserva gli angoli:**
-$\\cos\\theta = \\frac{f(v) \\cdot f(w)}{\\|f(v)\\|\\|f(w)\\|} = \\frac{v \\cdot w}{\\|v\\|\\|w\\|}$. **Vera** ✓
+**Opzione c — preserva gli angoli:** Vera. Un'isometria lineare preserva il prodotto scalare, quindi
+$$\cos\theta=\frac{f(v)\cdot f(w)}{\|f(v)\|\,\|f(w)\|}=\frac{v\cdot w}{\|v\|\,\|w\|}.$$
 
-**Risposta indicata: c.** ✓`,
+**Risposta: b e c.** ✓`,
   },
 
   {
@@ -1233,21 +1230,18 @@ Poiché c'è una dipendenza lineare tra $v_1, v_3, v_4, v_6$, non possiamo garan
       'b. $f$ è sempre suriettiva.',
       'c. $f(v) \\cdot f(w) = v \\cdot w$ per ogni scelta di vettori $v, w \\in \\mathbb{R}^n$.',
     ],
-    correctIndices: [2],
-    explanation: `**Definizione:** $f$ è isometria se $\\|f(v)\\| = \\|v\\|$ per ogni $v$.
+    correctIndices: [1, 2],
+    explanation: `Per un'isometria lineare vale $\|f(v)\| = \|v\|$ per ogni $v$.
 
-**Opzione a — sempre diagonalizzabile:** Una rotazione di $90°$ in $\\mathbb{R}^2$ non è diagonalizzabile su $\\mathbb{R}$. **Falsa** ✗
+**Opzione a — sempre diagonalizzabile:** Falsa. La rotazione di $90^\circ$ in $\mathbb{R}^2$ è un'isometria, ma non è diagonalizzabile su $\mathbb{R}$. ✗
 
-**Opzione b — sempre suriettiva:** Vero in dimensione finita (isometria $\\Rightarrow$ iniettiva $\\Rightarrow$ biettiva in dim. finita). Ma la risposta indicata è solo c.
+**Opzione b — sempre suriettiva:** Vera. Preservando la norma, $f$ è iniettiva; in dimensione finita, per $f:\mathbb{R}^n\to\mathbb{R}^n$, iniettiva implica anche suriettiva. ✓
 
-**Opzione c — preserva il prodotto scalare:**
-Per l'identità di polarizzazione:
-$$v \\cdot w = \\frac{1}{4}(\\|v+w\\|^2 - \\|v-w\\|^2)$$
-Poiché $f$ preserva le norme:
-$$f(v) \\cdot f(w) = \\frac{1}{4}(\\|f(v)+f(w)\\|^2 - \\|f(v)-f(w)\\|^2) = \\frac{1}{4}(\\|f(v+w)\\|^2 - \\|f(v-w)\\|^2) = v \\cdot w$$
-**Vera** ✓
+**Opzione c — preserva il prodotto scalare:** Vera. Per l'identità di polarizzazione,
+$$v\cdot w=\frac{1}{4}(\|v+w\|^2-\|v-w\|^2),$$
+e poiché $f$ è lineare e preserva le norme, segue $f(v)\cdot f(w)=v\cdot w$. ✓
 
-**Risposta: c.** ✓`,
+**Risposta: b e c.** ✓`,
   },
 
   {
@@ -1801,26 +1795,23 @@ $A$ è ortogonalmente diagonalizzabile $\\iff A$ è **simmetrica**.
       'c. $e_2 \\cdot (e_3 \\times e_1)$',
       'd. $(e_3 \\times e_2) \\cdot e_1$',
     ],
-    correctIndices: [1],
-    explanation: `Calcoliamo $e_3 \\cdot (e_1 \\times e_2)$:
-$$e_1 \\times e_2 = e_3$$
-$$e_3 \\cdot e_3 = 1$$
+    correctIndices: [2],
+    explanation: `Calcoliamo il valore della richiesta:
+$$e_1 \times e_2 = e_3$$
+quindi
+$$e_3 \cdot (e_1 \times e_2)=e_3\cdot e_3=1.$$
 
-**Verifichiamo le opzioni:**
+Verifichiamo le opzioni:
 
-**a.** $e_3 \\cdot (e_2 \\times e_1) = e_3 \\cdot (-e_3) = -1 \\neq 1$ ✗
+**a.** $e_2 \times e_1=-e_3$, quindi $e_3\cdot(e_2\times e_1)=-1$. ✗
 
-**b.** $(e_1 \\times e_3) \\cdot e_2 = (-e_2) \\cdot e_2$... aspetta: $e_1 \\times e_3 = -(e_3 \\times e_1) = -e_2$.
-$(-e_2) \\cdot e_2 = -1$... ✗
+**b.** $e_1 \times e_3=-e_2$, quindi $(e_1\times e_3)\cdot e_2=-1$. ✗
 
-Ricalcoliamo usando il prodotto misto: $a \\cdot (b \\times c) = \\det(a,b,c)$.
-$e_3 \\cdot (e_1 \\times e_2) = \\det(e_3, e_1, e_2) = +1$ (permutazione 312 = pari).
+**c.** $e_3 \times e_1=e_2$, quindi $e_2\cdot(e_3\times e_1)=1$. ✓
 
-**b.** $(e_1 \\times e_3) \\cdot e_2 = e_2 \\cdot (e_1 \\times e_3) = \\det(e_2, e_1, e_3)$ = permutazione 213 = dispari = $-1$. ✗
+**d.** $e_3 \times e_2=-e_1$, quindi $(e_3\times e_2)\cdot e_1=-1$. ✗
 
-**c.** $e_2 \\cdot (e_3 \\times e_1) = \\det(e_2, e_3, e_1) = +1$ (permutazione 231 = pari). ✓
-
-**Risposta: c.** Ma il quiz indica b. Verifichiamo: $(e_1 \\times e_3) \\cdot e_2 = \\det(e_2, e_1, e_3)$. La risposta del quiz è **b**.`,
+**Risposta: c.** ✓`,
   },
 
   {
