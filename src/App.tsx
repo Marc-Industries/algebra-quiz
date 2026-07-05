@@ -5,6 +5,8 @@ import { QuizCard } from './components/QuizCard';
 import { ProgressBar } from './components/ProgressBar';
 import { ResultsScreen } from './components/ResultsScreen';
 import { StatsScreen } from './components/StatsScreen';
+import { HackScreen } from './components/HackScreen';
+import { NomenclaturaScreen } from './components/NomenclaturaScreen';
 import { QUIZ_SIZE, STORAGE_KEY_SEEN } from './constants';
 
 // ── Quiz selection logic ─────────────────────────────────────────────────────
@@ -84,6 +86,13 @@ const App: React.FC = () => {
     setSeenIds(new Set());
   };
 
+  // Un quiz è "in corso" finché non è stata registrata una risposta per
+  // ogni domanda selezionata. Serve per mostrare "Torna al quiz" in Hack/
+  // Nomenclatura e per riprendere esattamente da dove si era arrivati,
+  // senza toccare activeQuestions/currentIndex/results/score.
+  const quizInProgress = activeQuestions.length > 0 && results.length < activeQuestions.length;
+  const backToQuiz = useCallback(() => setView(AppView.QUIZ), []);
+
   // ── Navbar ────────────────────────────────────────────────────────────────
   const NavBar = () => (
     <nav style={{
@@ -102,6 +111,7 @@ const App: React.FC = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
+        gap: '12px',
       }}>
         {/* Logo */}
         <button
@@ -114,6 +124,7 @@ const App: React.FC = () => {
             alignItems: 'center',
             gap: '10px',
             padding: 0,
+            flexShrink: 0,
           }}
         >
           <span style={{ fontSize: '1.35rem' }}>∑</span>
@@ -122,16 +133,25 @@ const App: React.FC = () => {
             fontSize: '1.05rem',
             color: 'var(--text-primary)',
             letterSpacing: '-0.02em',
+            whiteSpace: 'nowrap',
           }}>
             Algebra <span style={{ color: 'var(--accent)' }}>Quiz</span>
           </span>
         </button>
 
         {/* Nav links */}
-        <div style={{ display: 'flex', gap: '4px' }}>
+        <div style={{
+          display: 'flex',
+          gap: '2px',
+          overflowX: 'auto',
+          scrollbarWidth: 'none',
+          WebkitOverflowScrolling: 'touch',
+        }}>
           {[
             { label: 'Home', v: AppView.HOME },
             { label: 'Statistiche', v: AppView.STATS },
+            { label: 'Hack', v: AppView.HACK },
+            { label: 'Nomenclatura', v: AppView.NOMENCLATURA },
           ].map(({ label, v }) => (
             <button
               key={v}
@@ -142,11 +162,13 @@ const App: React.FC = () => {
                 borderRadius: 'var(--radius-sm)',
                 color: view === v ? 'var(--accent)' : 'var(--text-secondary)',
                 fontWeight: view === v ? 700 : 500,
-                fontSize: '0.88rem',
-                padding: '6px 14px',
+                fontSize: '0.82rem',
+                padding: '6px 11px',
                 cursor: 'pointer',
                 fontFamily: 'var(--font)',
                 transition: 'all 0.15s',
+                whiteSpace: 'nowrap',
+                flexShrink: 0,
               }}
             >
               {label}
@@ -264,6 +286,46 @@ const App: React.FC = () => {
           >
             📊&nbsp;&nbsp;I miei progressi
           </button>
+
+          {/* Quick access: Hack & Nomenclatura */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+            <button
+              onClick={() => setView(AppView.HACK)}
+              style={{
+                padding: '11px 14px',
+                background: 'var(--bg-card)',
+                color: 'var(--text-secondary)',
+                border: '1.5px solid var(--border)',
+                borderRadius: 'var(--radius)',
+                fontWeight: 600,
+                fontSize: '0.85rem',
+                cursor: 'pointer',
+                fontFamily: 'var(--font)',
+              }}
+              onMouseEnter={e => (e.currentTarget.style.borderColor = 'var(--border-light)')}
+              onMouseLeave={e => (e.currentTarget.style.borderColor = 'var(--border)')}
+            >
+              🧠 Hack
+            </button>
+            <button
+              onClick={() => setView(AppView.NOMENCLATURA)}
+              style={{
+                padding: '11px 14px',
+                background: 'var(--bg-card)',
+                color: 'var(--text-secondary)',
+                border: '1.5px solid var(--border)',
+                borderRadius: 'var(--radius)',
+                fontWeight: 600,
+                fontSize: '0.85rem',
+                cursor: 'pointer',
+                fontFamily: 'var(--font)',
+              }}
+              onMouseEnter={e => (e.currentTarget.style.borderColor = 'var(--border-light)')}
+              onMouseLeave={e => (e.currentTarget.style.borderColor = 'var(--border)')}
+            >
+              📖 Nomenclatura
+            </button>
+          </div>
         </div>
 
         {/* Feature pills */}
@@ -279,6 +341,7 @@ const App: React.FC = () => {
             '📝 Spiegazioni dettagliate',
             '🎲 Domande miste',
             '📈 Traccia i progressi',
+            '🧠 Hack & Nomenclatura',
           ].map(f => (
             <span key={f} style={{
               background: 'var(--bg-card)',
@@ -339,6 +402,20 @@ const App: React.FC = () => {
             seenIds={seenIds}
             onReset={handleReset}
             onStartQuiz={startQuiz}
+          />
+        )}
+
+        {view === AppView.HACK && (
+          <HackScreen
+            quizInProgress={quizInProgress}
+            onBackToQuiz={backToQuiz}
+          />
+        )}
+
+        {view === AppView.NOMENCLATURA && (
+          <NomenclaturaScreen
+            quizInProgress={quizInProgress}
+            onBackToQuiz={backToQuiz}
           />
         )}
       </main>
