@@ -4486,5 +4486,5 @@ $e_1 \\times e_2 = e_3$, quindi $e_3 \\cdot e_3 = 1$.
     ],
     correctIndices: [0],
     explanation: 'Con il coniugato l\'equazione non è un polinomio usuale in $z$; si pone $z=x+iy$ e si separano parte reale e immaginaria.',
-  },];
-
+  },
+];
