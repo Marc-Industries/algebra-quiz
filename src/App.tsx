@@ -128,18 +128,17 @@ const App: React.FC = () => {
       <div style={{
         maxWidth: '100%',
         margin: '0 auto',
-        padding: '0 20px',
-        height: '58px',
+        padding: '12px 20px',
         display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        gap: '12px',
+        flexDirection: 'column',
+        gap: '10px',
       }}>
-        {/* Logo with Extra badge */}
+        {/* Logo with Extra badge below */}
         <div style={{
           display: 'flex',
           alignItems: 'center',
-          gap: '10px',
+          justifyContent: 'space-between',
+          gap: '12px',
         }}>
           <button
             onClick={() => setView(AppView.HOME)}
@@ -165,6 +164,54 @@ const App: React.FC = () => {
               Algebra <span style={{ color: 'var(--accent)' }}>Quiz</span>
             </span>
           </button>
+
+          {/* Nav links */}
+          <div style={{
+            display: 'flex',
+            gap: '2px',
+            overflowX: 'auto',
+            scrollbarWidth: 'none',
+            WebkitOverflowScrolling: 'touch',
+            alignItems: 'center',
+          }}>
+            {[
+              { label: 'Home', v: AppView.HOME },
+              { label: 'Statistiche', v: AppView.STATS },
+              { label: 'Hack', v: AppView.HACK },
+              { label: 'Nomenclatura', v: AppView.NOMENCLATURA },
+            ].map(({ label, v }) => (
+              <button
+                key={v}
+                onClick={() => setView(v)}
+                style={{
+                  background: view === v ? 'var(--accent-glow)' : 'none',
+                  border: view === v ? '1px solid rgba(108,99,255,0.3)' : '1px solid transparent',
+                  borderRadius: 'var(--radius-sm)',
+                  color: view === v ? 'var(--accent)' : 'var(--text-secondary)',
+                  fontWeight: view === v ? 700 : 500,
+                  fontSize: '0.82rem',
+                  padding: '6px 11px',
+                  cursor: 'pointer',
+                  fontFamily: 'var(--font)',
+                  transition: 'all 0.15s',
+                  whiteSpace: 'nowrap',
+                  flexShrink: 0,
+                }}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Second row: + EXTRA and Originali Moodle button */}
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: '12px',
+          paddingTop: '4px',
+        }}>
           <span style={{
             background: 'linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%)',
             color: '#fff',
@@ -177,53 +224,6 @@ const App: React.FC = () => {
           }}>
             + EXTRA
           </span>
-        </div>
-
-        {/* Nav links */}
-        <div style={{
-          display: 'flex',
-          gap: '2px',
-          overflowX: 'auto',
-          scrollbarWidth: 'none',
-          WebkitOverflowScrolling: 'touch',
-          alignItems: 'center',
-        }}>
-          {[
-            { label: 'Home', v: AppView.HOME },
-            { label: 'Statistiche', v: AppView.STATS },
-            { label: 'Hack', v: AppView.HACK },
-            { label: 'Nomenclatura', v: AppView.NOMENCLATURA },
-          ].map(({ label, v }) => (
-            <button
-              key={v}
-              onClick={() => setView(v)}
-              style={{
-                background: view === v ? 'var(--accent-glow)' : 'none',
-                border: view === v ? '1px solid rgba(108,99,255,0.3)' : '1px solid transparent',
-                borderRadius: 'var(--radius-sm)',
-                color: view === v ? 'var(--accent)' : 'var(--text-secondary)',
-                fontWeight: view === v ? 700 : 500,
-                fontSize: '0.82rem',
-                padding: '6px 11px',
-                cursor: 'pointer',
-                fontFamily: 'var(--font)',
-                transition: 'all 0.15s',
-                whiteSpace: 'nowrap',
-                flexShrink: 0,
-              }}
-            >
-              {label}
-            </button>
-          ))}
-          
-          {/* Divider */}
-          <div style={{
-            width: '1px',
-            height: '24px',
-            background: 'var(--border)',
-            margin: '0 6px',
-            flexShrink: 0,
-          }} />
 
           {/* Original Exams Button */}
           <a
@@ -232,6 +232,7 @@ const App: React.FC = () => {
             rel="noopener noreferrer"
             style={{
               textDecoration: 'none',
+              marginLeft: 'auto',
             }}
           >
             <button
