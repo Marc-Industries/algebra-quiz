@@ -128,92 +128,140 @@ const App: React.FC = () => {
       <div style={{
         maxWidth: '100%',
         margin: '0 auto',
-        padding: '0 20px',
-        height: '58px',
+        padding: '12px 20px',
         display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        gap: '12px',
+        flexDirection: 'column',
+        gap: '10px',
       }}>
-        {/* Logo */}
-        <button
-          onClick={() => setView(AppView.HOME)}
-          style={{
-            background: 'none',
-            border: 'none',
-            cursor: 'pointer',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: '2px',
-            padding: 0,
-            flexShrink: 0,
-          }}
-        >
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <span style={{ fontSize: '1.35rem' }}>∑</span>
-              <span style={{
-                fontWeight: 800,
-                fontSize: '1.05rem',
-                color: 'var(--text-primary)',
-                letterSpacing: '-0.02em',
-                whiteSpace: 'nowrap',
-              }}>
-                Algebra <span style={{ color: 'var(--accent)' }}>Quiz</span>
-              </span>
-            </div>
-            <span style={{
-              display: 'inline-block',
-              background: 'linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%)',
-              color: '#fff',
-              padding: '2px 8px',
-              borderRadius: '8px',
-              fontSize: '0.6rem',
-              fontWeight: 800,
-              letterSpacing: '0.05em',
-            }}>
-              ORIGINALI
-            </span>
-          </div>
-        </button>
-
-        {/* Nav links */}
+        {/* Logo with Extra badge below */}
         <div style={{
           display: 'flex',
-          gap: '2px',
-          overflowX: 'auto',
-          scrollbarWidth: 'none',
-          WebkitOverflowScrolling: 'touch',
           alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: '12px',
         }}>
-          {[
-            { label: 'Home', v: AppView.HOME },
-            { label: 'Statistiche', v: AppView.STATS },
-            { label: 'Hack', v: AppView.HACK },
-            { label: 'Nomenclatura', v: AppView.NOMENCLATURA },
-          ].map(({ label, v }) => (
+          <button
+            onClick={() => setView(AppView.HOME)}
+            style={{
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '10px',
+              padding: 0,
+              flexShrink: 0,
+            }}
+          >
+            <span style={{ fontSize: '1.35rem' }}>∑</span>
+            <span style={{
+              fontWeight: 800,
+              fontSize: '1.05rem',
+              color: 'var(--text-primary)',
+              letterSpacing: '-0.02em',
+              whiteSpace: 'nowrap',
+            }}>
+              Algebra <span style={{ color: 'var(--accent)' }}>Quiz</span>
+            </span>
+          </button>
+
+          {/* Nav links */}
+          <div style={{
+            display: 'flex',
+            gap: '2px',
+            overflowX: 'auto',
+            scrollbarWidth: 'none',
+            WebkitOverflowScrolling: 'touch',
+            alignItems: 'center',
+          }}>
+            {[
+              { label: 'Home', v: AppView.HOME },
+              { label: 'Statistiche', v: AppView.STATS },
+              { label: 'Hack', v: AppView.HACK },
+              { label: 'Nomenclatura', v: AppView.NOMENCLATURA },
+            ].map(({ label, v }) => (
+              <button
+                key={v}
+                onClick={() => setView(v)}
+                style={{
+                  background: view === v ? 'var(--accent-glow)' : 'none',
+                  border: view === v ? '1px solid rgba(108,99,255,0.3)' : '1px solid transparent',
+                  borderRadius: 'var(--radius-sm)',
+                  color: view === v ? 'var(--accent)' : 'var(--text-secondary)',
+                  fontWeight: view === v ? 700 : 500,
+                  fontSize: '0.82rem',
+                  padding: '6px 11px',
+                  cursor: 'pointer',
+                  fontFamily: 'var(--font)',
+                  transition: 'all 0.15s',
+                  whiteSpace: 'nowrap',
+                  flexShrink: 0,
+                }}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Second row: + EXTRA and Originali Moodle button */}
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: '12px',
+          paddingTop: '4px',
+        }}>
+          <span style={{
+            background: 'linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%)',
+            color: '#fff',
+            padding: '3px 10px',
+            borderRadius: '12px',
+            fontSize: '0.7rem',
+            fontWeight: 800,
+            letterSpacing: '0.05em',
+            whiteSpace: 'nowrap',
+          }}>
+            + EXTRA
+          </span>
+
+          {/* Original Exams Button */}
+          <a
+            href="https://old-algebra-quiz.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              textDecoration: 'none',
+              marginLeft: 'auto',
+            }}
+          >
             <button
-              key={v}
-              onClick={() => setView(v)}
               style={{
-                background: view === v ? 'var(--accent-glow)' : 'none',
-                border: view === v ? '1px solid rgba(108,99,255,0.3)' : '1px solid transparent',
+                background: 'var(--bg)',
+                border: '1.5px solid var(--border)',
                 borderRadius: 'var(--radius-sm)',
-                color: view === v ? 'var(--accent)' : 'var(--text-secondary)',
-                fontWeight: view === v ? 700 : 500,
-                fontSize: '0.82rem',
-                padding: '6px 11px',
+                color: 'var(--text-secondary)',
+                fontWeight: 600,
+                fontSize: '0.75rem',
+                padding: '5px 10px',
                 cursor: 'pointer',
                 fontFamily: 'var(--font)',
                 transition: 'all 0.15s',
                 whiteSpace: 'nowrap',
                 flexShrink: 0,
               }}
+              onMouseEnter={e => {
+                e.currentTarget.style.borderColor = 'var(--accent)';
+                e.currentTarget.style.color = 'var(--accent)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.borderColor = 'var(--border)';
+                e.currentTarget.style.color = 'var(--text-secondary)';
+              }}
             >
-              {label}
+              📚 Originali Moodle
             </button>
-          ))}
+          </a>
         </div>
       </div>
     </nav>
